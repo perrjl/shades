@@ -1,0 +1,1 @@
+call zig\zig.exe cc main.c -L. -lSDL3 -o shader.exe
