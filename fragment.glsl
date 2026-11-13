@@ -1,7 +1,7 @@
 #version 450
-// Example fragment shader. Edit it, rebuild the "shaders" target, then press R in the app.
 
-layout(location = 0) in vec2 v_uv;         // 0..1 across the window, (0,0) = bottom-left
+layout(location = 0) in vec4 color;
+layout(location = 1) in vec2 tex_uv;         // 0..1 across the window, (0,0) = bottom-left
 layout(location = 0) out vec4 out_color;
 
 // SDL_GPU convention: fragment-stage uniform buffers live in set 3.
@@ -12,7 +12,7 @@ layout(set = 3, binding = 0) uniform Uniforms {
 
 void main()
 {
-    vec2 p = (v_uv - 0.5) * vec2(u.resolution.x / u.resolution.y, 1.0);
+    vec2 p = (tex_uv - 0.5) * vec2(u.resolution.x / u.resolution.y, 1.0);
     float t = u.time;
 
     float v = sin(p.x * 10.0 + t)
